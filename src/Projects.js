@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useReveal } from './hooks';
 
 const PROJECTS = [
@@ -8,7 +8,10 @@ const PROJECTS = [
     tags: ['Angular', 'Spring Boot', 'Microservices', 'REST API', 'Spring Security', 'Java'],
     featured: true,
     github: 'https://github.com/varshini057',
-    image: null, // Add your image path here: '/images/bookify.png'
+    image: [
+      '/Assets/Bookify.png',
+      '/Assets/Bookify login page.png'
+    ],
   },
   {
     icon: '🎓', title: 'Reconnect', sub: 'Supporting Dropout Students',
@@ -34,6 +37,8 @@ const IMAGE_PLACEHOLDER = (
 
 function ProjectCard({ p, idx }) {
   const ref = useRef(null);
+  const [imgIdx, setImgIdx] = useState(0);
+  const imgs = Array.isArray(p.image) ? p.image : (p.image ? [p.image] : []);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -56,6 +61,23 @@ function ProjectCard({ p, idx }) {
     };
   }, []);
 
+  // Slideshow effect: change image every 3 seconds when multiple images exist
+  useEffect(() => {
+    if (imgs.length <= 1) return undefined;
+    const iv = setInterval(() => setImgIdx(i => (i + 1) % imgs.length), 3000);
+    return () => clearInterval(iv);
+  }, [p.image]);
+
+  // helper: try alternate public path when an image fails to load
+  const handleImgError = (e, src) => {
+    const el = e.currentTarget;
+    if (el.dataset.fallback) return (el.style.display = 'none');
+    el.dataset.fallback = '1';
+    // try serving from public folder (works if you place Assets folder inside public/)
+    const alt = src.startsWith('/') ? src : '/' + src;
+    el.src = (process.env.PUBLIC_URL || '') + alt;
+  };
+
   return (
     <div className="proj reveal" ref={ref} style={{ transitionDelay: `${idx * 0.15}s` }}>
       {/* Featured star overlay */}
@@ -77,8 +99,27 @@ function ProjectCard({ p, idx }) {
 
       {/* Right side - Image */}
       <div className="proj-img">
-        {p.image ? (
-          <img src={p.image} alt={p.title} />
+        {imgs.length ? (
+          <>
+            <div className="proj-img-frame">
+              {imgs.map((s, i) => (
+                <img
+                  key={i}
+                  src={s}
+                  className={i === imgIdx ? 'active' : ''}
+                  alt={`${p.title} preview ${i + 1}`}
+                  onError={(e) => handleImgError(e, s)}
+                />
+              ))}
+            </div>
+            {imgs.length > 1 && (
+              <div className="proj-img-dots">
+                {imgs.map((_, i) => (
+                  <span key={i} className={i === imgIdx ? 'active' : ''} />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div className="proj-img-placeholder">
             {IMAGE_PLACEHOLDER}
