@@ -1,35 +1,34 @@
 {
-  "name": "varshini",
-  "version": "0.1.0",
+  "name": "portfolio-v",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://ajju0418.github.io/Portfolio-v",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ajju0418/Portfolio-v.git"
-  },
-  "dependencies": {
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
+  "description": "Personal portfolio site",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajju0418/Portfolio-v.git"
+  },
+  "keywords": [],
+  "author": "ajju0418",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajju0418/Portfolio-v/issues"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   },
   "browserslist": {
     "production": [
@@ -42,8 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
   }
 }
