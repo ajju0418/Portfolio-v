@@ -20,7 +20,7 @@ export default function Navbar({ active }) {
   return (
     <>
       <nav className={`nav${sc ? ' sc' : ''}`}>
-        <div className="nav-logo" onClick={() => scrollTo('home')}><span className="logo-text">VA</span><span className="dot">.</span></div>
+        <div className="nav-logo" onClick={() => scrollTo('home')}><span className="logo-text">VA</span></div>
         <ul className="nav-ul">
           {LINKS.map(l => (
             <li key={l}>

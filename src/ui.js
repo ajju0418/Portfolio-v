@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 export function PageLoader({ done }) {
   return (
     <div className={`loader${done ? ' done' : ''}`}>
-      <div className="loader-mono">VA<span>.</span></div>
+      <div className="loader-mono"><span>VA</span></div>
       <div className="loader-bar" />
     </div>
   );

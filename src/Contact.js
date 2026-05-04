@@ -16,10 +16,26 @@ export default function Contact() {
   const rRef = useReveal();
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => { setSending(false); setSent(true); }, 2000);
+    try {
+      const res = await fetch('https://formspree.io/f/xwvwarvw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        alert('Oops! There was a problem sending your message.');
+      }
+    } catch (err) {
+      alert('Oops! There was a problem sending your message.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -58,9 +74,16 @@ export default function Contact() {
             <div className="c-form-offset" />
             {sent ? (
               <div className="f-ok">
-                <div className="f-ok-ico">🎉</div>
+                <div className="f-ok-glow" />
+                <div className="f-ok-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                </div>
                 <h3>Message Sent!</h3>
-                <p>Thanks for reaching out. I'll get back to you soon.</p>
+                <p>Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                <button className="btn-o f-ok-btn" onClick={() => setSent(false)}>Send Another Message</button>
               </div>
             ) : (
               <form className="c-form" onSubmit={onSubmit}>
@@ -87,4 +110,3 @@ export default function Contact() {
     </section>
   );
 }
-

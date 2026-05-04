@@ -21,8 +21,8 @@ const HACKATHONS = [
     theme: 'Urban Tech & Sustainability',
     project: 'Kuppai-Connect',
     projectSub: 'Smart Waste Route Optimizer',
-    role: 'Built the interactive map dashboard with dynamic shortest-route generation using mock GPS bin data.',
-    stack: ['React.js', 'Mapbox API'],
+    role: 'Built the interactive dashboard and integrated REST APIs for dynamic shortest-route generation using mock GPS bin data.',
+    stack: ['React', 'REST API', 'GitHub'],
   },
   {
     icon: '💸',
@@ -34,8 +34,8 @@ const HACKATHONS = [
     theme: 'Financial Inclusion',
     project: 'MicroFundr',
     projectSub: 'Peer-to-Peer Micro-Lending Platform',
-    role: 'Led UI/UX design in Figma and translated it into a fully responsive frontend with secure authentication.',
-    stack: ['React', 'Tailwind CSS', 'Firebase', 'Figma'],
+    role: 'Developed a fully responsive frontend and implemented secure authentication workflows with Role-Based Access Control.',
+    stack: ['Angular', 'Spring Security', 'RBAC', 'Auth & AuthZ'],
   },
   {
     icon: '♿',
@@ -47,8 +47,8 @@ const HACKATHONS = [
     theme: 'EdTech & Accessibility',
     project: 'Padippu.io',
     projectSub: 'Accessibility-First EdTech Aggregator',
-    role: 'Engineered custom WCAG-compliant React components with screen-reader optimization and Redux state management.',
-    stack: ['React', 'Redux', 'WCAG'],
+    role: 'Engineered a scalable platform using microservices architecture and developed iterative features in an Agile environment.',
+    stack: ['Java', 'Spring Boot', 'Microservices', 'Agile'],
   },
 ];
 
@@ -158,4 +158,3 @@ export default function Achievements() {
     </section>
   );
 }
-
